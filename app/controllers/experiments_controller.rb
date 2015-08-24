@@ -12,7 +12,7 @@ class ExperimentsController < ActionController::Base
   end
 
   def create
-    @experiment = Experiment.create(params[:experiment])
+    @experiment = Experiment.create(experiment_params)
     if @experiment.valid?
       redirect_to @experiment
     else
@@ -22,7 +22,7 @@ class ExperimentsController < ActionController::Base
 
   def update
     @experiment = Experiment.find(params[:id])
-    @experiment.update(params[:experiment])
+    @experiment.update(experiment_params)
     redirect_to @experiment
   end
 
@@ -30,5 +30,11 @@ class ExperimentsController < ActionController::Base
     Experiment.destroy(params[:id])
     redirect_to experiments_path
   end
+
+  private
+
+    def experiment_params
+      params.require(:experiment).permit(:status, :title, :hypothesis, :description, :conclusion, :start_date, :end_date, :owner_id, :lab_id)
+    end
 
 end
