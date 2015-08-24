@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   validates_presence_of :name, :email, :hashed_password, :position
-  validates :email, uniqueness: true,
+  validates :email, uniqueness: true
   validates_format_of :email, :with => /\A([^@\s]+)(@gmail.com)\Z/i
   validate :type_of_user
 
