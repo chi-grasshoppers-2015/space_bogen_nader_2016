@@ -1,0 +1,5 @@
+<h3>New Experiment</h3>
+<%= form_for @experiment do |f| %>
+  <%= render partial: :form, locals: {form: f}  %>
+  <%= f.submit "Save Experiment" %>
+<% end %>
