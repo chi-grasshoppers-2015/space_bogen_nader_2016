@@ -6,6 +6,16 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
+<header>
+  <nav>
+    <% if logged_in? %>
+      <%= link_to 'Log out', session_path, :method => 'delete' %>
+      <h3>Welcome, <%= current_user.name %>!</h3>
+    <% else %>
+      <h1>Placeholder</h1>
+    <% end %>
+  </nav>
+</header>
 <body>
 
 <%= yield %>
