@@ -1,4 +1,4 @@
-class ExperimentsController < ActionController::Base
+class ExperimentsController < ApplicationController
   def index
     @experiments = Experiment.all
   end

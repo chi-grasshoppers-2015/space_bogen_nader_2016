@@ -1,4 +1,4 @@
-class LogsController < ActionController::Base
+class LogsController < ApplicationController
 	# def index
 	# end
 
