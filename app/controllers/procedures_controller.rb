@@ -1,35 +1,35 @@
 class ProceduresController < ResourcesController
+  before_action :find_experiment
+
   def show
     @procedure = find_procedure
   end
 
   def new
     @procedure = Procedure.new
-    @experiment = Experiment.find(params[:experiment_id])
   end
 
   def create
-    @procedure = Procedure.create(procedure_params)
+    @procedure = @experiment.procedures.create(procedure_params)
     if @procedure.valid?
-      redirect_to @procedure
+      redirect_to [@experiment, @procedure]
     else
       render :new
     end
   end
 
   def edit
-    @procedure = Procedure.find(params[:id])
+    @procedure = find_procedure
   end
 
   def update
     @procedure = find_procedure
     @procedure.update(procedure_params)
-    redirect_to @procedure
+    redirect_to [@experiment, @procedure]
   end
 
   def destroy
-    @procedure = Procedure.find(params[:id])
-    @experiment = @procedure.experiment
+    @procedure = find_procedure
     @procedure.destroy
     redirect_to @experiment
   end
@@ -37,6 +37,10 @@ class ProceduresController < ResourcesController
   private
     def find_procedure
       Procedure.find(params[:id])
+    end
+
+    def find_experiment
+      @experiment = Experiment.find(params[:experiment_id])
     end
 
     def procedure_params

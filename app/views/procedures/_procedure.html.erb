@@ -1,16 +1,15 @@
 Instructions:
 <p><%= procedure.instructions %></p>
 <% if current_user.faculty? && current_user.experiments.include?(@experiment) %>
-  <%= link_to "Edit procedure", edit_procedure_path(procedure) %> |
-  <%= link_to "Delete procedure", procedure, method: :delete %>
+  <%= link_to "Edit procedure", edit_experiment_procedure_path(@experiment, procedure) %> |
+  <%= link_to "Delete procedure", experiment_procedure_path(@experiment, procedure), method: :delete %>
 <% end %>
 <h4>Log entries for this procedure:</h4>
 <%= render procedure.logs %>
-<% if !current_user.faculty? && procedure.experiment.staffs.include?(current_user) %>
+<% if !current_user.faculty? && @experiment.staffs.include?(current_user) %>
   <h4>Add log entry:</h4>
   <%= form_for :log, url: logs_path do |f| %>
     <%= render partial: "logs/form", locals: { form: f } %>
-    <%= f.hidden_field(:procedure_id, value: procedure.id) %>
     <%= f.hidden_field(:staff_id, value: current_user.id) %>
     <%= f.submit "Add observation" %>
   <% end %>
