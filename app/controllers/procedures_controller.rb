@@ -22,6 +22,10 @@ class ProceduresController < ApplicationController
     redirect_to @procedure
   end
 
+  def destroy
+    Procedure.destroy(params[:id])
+  end
+
   private
     def find_procedure
       Procedure.find(params[:id])
