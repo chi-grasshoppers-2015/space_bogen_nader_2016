@@ -1,0 +1,19 @@
+<h3>Details for Experiment: <%= @experiment.title %></h3>
+<h4>Description:</h4>
+<p><%= @experiment.description %></p>
+<h4>Hypothesis:</h4>
+<p><%= @experiment.hypothesis %></p>
+<% if @experiment.ended? %>
+  <h4>Conclusion:</h4>
+  <p><%= @experiment.conclusion %></p>
+<% end %>
+<h4>Start Date:</h4>
+<p><%= @experiment.start_date %></p>
+<h4>End Date:</h4>
+<p><%= @experiment.end_date %></p>
+<h4>Faculty Member:</h4>
+<p><%= @experiment.owner.name %></p>
+<h4>Lab:</h4>
+<p><%= @experiment.lab.name %></p>
+
+<%= link_to "Add procedure", new_procedure_path(@experiment) %>
