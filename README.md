@@ -1,6 +1,6 @@
 #Team name: Space Kincaiders
 
-#Team members: Nick Kincaid, Matt Bogen, Connor Ring, Ken Liu
+#Team members: Matt Bogen, Nick Kincaid, Ken Liu, Connor Ring
 
 #User Stories:
 
