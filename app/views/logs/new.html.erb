@@ -1,0 +1,6 @@
+<h3>New observation for experiment <%= @log.experiment_title %></h3>
+<%= form_for @log do |f| %>
+	<%= render partial: :form, locals: {form: f} %>
+	<%= f.submit "Add observation" %>
+<% end %>
+
