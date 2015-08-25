@@ -12,7 +12,7 @@ class Experiment < ActiveRecord::Base
   end
 
   def hours_spent
-    self.logs.map(&:time_spent).reduce(:+)
+    self.logs.map(&:time_spent).reduce(:+) || 0
   end
 
   def proposal?

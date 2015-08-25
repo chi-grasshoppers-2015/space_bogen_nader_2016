@@ -12,7 +12,7 @@
 <h4>End Date:</h4>
 <p><%= @experiment.end_date %></p>
 <h4>Hours allotted: </h4>
-<p><%= @experiment.allotted_hours %></p>
+<p><%= @experiment.allotted_time %></p>
 <h4>Hours left: </h4>
 <p><%= @experiment.hours_left %></p>
 <h4>Faculty Member:</h4>
@@ -23,6 +23,6 @@
 <%= render @experiment.procedures %>
 <% if current_user.faculty? && current_user.experiments.include?(@experiment) %>
   <p><%= link_to "Add procedure", new_experiment_procedure_path(@experiment) %></p>
-<% elsif !current_user.faculty && !@experiment.staffs.include?(current_user) %>
+<% elsif !current_user.faculty? && !@experiment.staffs.include?(current_user) %>
   <%= link_to "Sign up for this experiment", assign_path(@experiment), method: :post %>
 <% end %>
