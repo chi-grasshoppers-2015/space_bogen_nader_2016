@@ -1,3 +1,5 @@
 <h1>All Experiments</h1>
 <%= render Experiment.all %>
-<%= link_to "New Experiment", new_experiment_path %>
+<% if current_user.faculty? %>
+  <%= link_to "New Experiment", new_experiment_path %>
+<% end %>
