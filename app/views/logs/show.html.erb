@@ -1,0 +1,6 @@
+<h3>Observation log for experiment <%= @log.experiment_title %></h3>
+Observations:
+<p><%= @log.observation %></p>
+<%= link_to "Edit observation log", edit_observation_path(@log) %>
+<%= link_to "Delete observation log", @log, method: delete %>
+<%= link_to "Back to experiment", @log.procedure.experiment %>
