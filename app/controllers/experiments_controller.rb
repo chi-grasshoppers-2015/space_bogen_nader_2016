@@ -4,7 +4,7 @@ class ExperimentsController < ActionController::Base
   end
 
   def show
-    @experiment = Experiment.find(params[:id])
+    @experiment = find_experiment
   end
 
   def new
@@ -21,7 +21,7 @@ class ExperimentsController < ActionController::Base
   end
 
   def update
-    @experiment = Experiment.find(params[:id])
+    @experiment = find_experiment
     @experiment.update(experiment_params)
     redirect_to @experiment
   end
@@ -32,6 +32,10 @@ class ExperimentsController < ActionController::Base
   end
 
   private
+
+    def find_experiment
+      Experiment.find(params[:id])
+    end
 
     def experiment_params
       params.require(:experiment).permit(:status, :title, :hypothesis, :description, :conclusion, :start_date, :end_date, :owner_id, :lab_id)
