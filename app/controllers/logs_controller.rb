@@ -1,5 +1,4 @@
 class LogsController < ActionController::Base
-	# Logs per Experiment, contained in experiment controller? For now, have them exclusive of each other
 	# def index
 	# end
 
