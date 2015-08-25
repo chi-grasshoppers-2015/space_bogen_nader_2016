@@ -5,19 +5,25 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /\A([^@\s]+)(@gmail.com)\Z/i
   validate :type_of_user
 
+  after_initialize :set_defaults
+
+  def set_defaults
+    self.position ||= "staff"
+  end
+
   def type_of_user
-    if self.position != "staff" || self.position != "faculty"
+    if self.position != "staff" && self.position != "faculty"
       errors.add(:user_type, "must be staff or faculty")
     end
   end
 
   def password
-    @password ||= BCrypt::Password.new(password_hash)
+    @password ||= BCrypt::Password.new(hashed_password)
   end
 
   def password=(new_password)
     @password = BCrypt::Password.create(new_password)
-    self.password_hash = @password
+    self.hashed_password = @password
   end
 
   def self.authenticate(email, password)

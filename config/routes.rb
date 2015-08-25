@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'pages#index'
   resources :users
   resources :sessions, only: [:new, :create, :delete]
   resources :labs, only: [:index, :show]
