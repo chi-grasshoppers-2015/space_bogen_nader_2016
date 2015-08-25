@@ -1,5 +1,6 @@
 <h3>New procedure for experiment <%= @experiment.title %></h3>
 <%= form_for @procedure do |f| %>
-  <%= render partial: :form, locals: { form: f } %>
+  <%= render partial: "form", locals: { form: f } %>
+  <%= f.hidden_field(:experiment_id, value: @experiment.id) %>
   <%= f.submit "Add procedure" %>
 <% end %>
