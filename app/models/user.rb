@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 
   after_initialize :set_defaults
 
+  has_many :experiments
+  has_many :logs
+
   def set_defaults
     self.position ||= "staff"
   end
