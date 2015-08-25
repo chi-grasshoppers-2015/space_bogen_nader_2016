@@ -15,6 +15,14 @@ class Experiment < ActiveRecord::Base
     self.logs.map(&:time_spent).reduce(:+) || 0
   end
 
+  def assigned_staff
+    self.staffs_experiments.select{|s| s.assigned}.map(&:staff)
+  end
+
+  def starred_staff
+    self.staffs_experiments.select{|s| s.starred}.map(&:staff)
+  end
+
   def proposal?
     Date.today < self.start_date || !self.staffed?
   end

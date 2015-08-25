@@ -1,2 +1,6 @@
-<%= form.label :observation %>
-<%= form.text_area :observation, size: "30x10" %>
+<%= form.label :time_spent %>
+<%= form.number_field :time_spent, step: 0.5 %>
+<p><%= form.label :time_performed %>
+<%= form.datetime_select :time_performed %></p>
+<p><%= form.label :observation %>
+<%= form.text_area :observation, size: "30x10" %></p>

@@ -1,5 +1,5 @@
 <p><%= log.observation %></p>
 <% if !current_user.faculty? && log.procedure.experiment.staffs.include?(current_user) %>
-  <%= link_to "Edit observation log", edit_log_path(log) %> |
-  <%= link_to "Delete observation log", log, :method => :delete %>
+  <%= link_to "Edit observation log", edit_experiment_procedure_log_path(@experiment, log.procedure, log) %> |
+  <%= link_to "Delete observation log", experiment_procedure_log_path(@experiment, log.procedure, log), :method => :delete %>
 <% end %>

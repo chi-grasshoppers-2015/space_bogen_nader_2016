@@ -1,5 +1,5 @@
 <h3>Editing log for experiment: <%= @procedure.experiment.title  %> </h3>
-<%= form_for @log do |f| %>
+<%= form_for @log, url: experiment_procedure_log_path(@experiment, @procedure, @log) do |f| %>
 	<%= render partial: "form", locals: { form: f } %>
 	<%= f.submit "Save log" %>
 <% end %>

@@ -57,12 +57,12 @@ ActiveRecord::Schema.define(version: 20150824214458) do
   end
 
   create_table "staffs_experiments", force: :cascade do |t|
-    t.integer  "experiment_id", null: false
-    t.integer  "staff_id",      null: false
-    t.boolean  "starred",       null: false
-    t.boolean  "assigned",      null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "experiment_id",                 null: false
+    t.integer  "staff_id",                      null: false
+    t.boolean  "starred",       default: false, null: false
+    t.boolean  "assigned",      default: false, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "users", force: :cascade do |t|

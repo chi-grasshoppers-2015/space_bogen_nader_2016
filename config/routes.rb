@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#index'
   delete 'logout'  => 'sessions#destroy'
-  post 'experiments/:id/signup' => 'experiments#assign', as: 'assign'
+  post 'experiments/:id/star' => 'experiments#star', as: 'star'
   resources :users
   resources :sessions, only: [:new, :create]
   resources :labs, only: [:index, :show]
