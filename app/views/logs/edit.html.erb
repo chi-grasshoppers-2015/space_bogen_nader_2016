@@ -1,6 +1,6 @@
 <h3>Editing log for experiment: <%= @procedure.experiment.title  %> </h3>
 <%= form_for @log do |f| %>
-	<%= render partial: :form, locals: { form: f } %>
+	<%= render partial: "form", locals: { form: f } %>
 	<%= f.submit "Save log" %>
 <% end %>
  
