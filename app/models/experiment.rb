@@ -1,7 +1,7 @@
 class Experiment < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
   belongs_to :lab
-  has_many :logs
+  has_many :procedures
   has_many :assignments
   has_many :staffs, through: :assignments
   validates_presence_of :title, :hypothesis, :description, :owner_id, :lab_id, :start_date, :end_date
