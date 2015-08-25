@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   has_many :experiments, foreign_key: :owner_id
   has_many :logs
 
-  has_many :assignments
-  has_many :assigned_experiments, through: :assignments, source: :staff
+  has_many :staffs_experiments
+  has_many :assigned_experiments, through: :staffs_experiments, source: :staff
 
   def set_defaults
     self.position ||= "staff"
