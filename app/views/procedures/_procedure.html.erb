@@ -1,7 +1,7 @@
 Instructions:
 <p><%= procedure.instructions %></p>
-<% if current_user.faculty? %>
-  <%= link_to "Edit procedure", edit_procedure_path(procedure) %>
+<% if current_user.faculty? && current_user.experiments.include?(@experiment) %>
+  <%= link_to "Edit procedure", edit_procedure_path(procedure) %> |
   <%= link_to "Delete procedure", procedure, method: :delete %>
 <% end %>
 <h4>Log entries for this procedure:</h4>
