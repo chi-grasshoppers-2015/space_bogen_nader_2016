@@ -1,0 +1,12 @@
+
+
+<% @labs.each do |lab| %>
+
+  <div>
+    <%= link_to(lab) do %>
+      <h2><%= lab.name %></h2>
+      <p><%= lab.location %></p>
+    <% end %>
+  </div>
+
+<% end %>
