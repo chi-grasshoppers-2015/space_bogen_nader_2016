@@ -9,25 +9,28 @@ class LogsController < ApplicationController
 	def create
 		@log = Log.create(log_params)
 		if @log.valid?
-			redirect_to @log
+			redirect_to @log.procedure.experiment
 		else
-			render :new
+
 		end
 	end
 
-	def show
+	def edit
 		@log = find_log
+		@procedure = @log.procedure
 	end
 
 	def update
 		@log = find_log
 		@log.update(log_params)
-		redirect_to @log
+		redirect_to @log.procedure.experiment
 	end
 
-	def delete
-		Log.destroy(param[:id])
-		redirect_to logs_path
+	def destroy
+		@log = find_log
+		@experiment = @log.procedure.experiment
+		@log.destroy
+		redirect_to @experiment
 	end
 
 	private
@@ -37,7 +40,7 @@ class LogsController < ApplicationController
 		end
 
 		def log_params
-			params.require(:log).permit(:observation, :logger_id, :procedure_id)
+			params.require(:log).permit(:observation, :staff_id, :procedure_id)
 		end
 
 

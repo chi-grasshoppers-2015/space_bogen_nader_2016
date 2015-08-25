@@ -3,10 +3,15 @@ Instructions:
 <% if current_user.faculty? %>
   <%= link_to "Edit procedure", edit_procedure_path(procedure) %>
   <%= link_to "Delete procedure", procedure, method: :delete %>
-<% else %>
-  <h4>Add log entry for this procedure:</h4>
-  <%= form_for :log do |f| %>
+<% end %>
+<h4>Log entries for this procedure:</h4>
+<%= render procedure.logs %>
+<% if !current_user.faculty? %>
+  <h4>Add log entry:</h4>
+  <%= form_for :log, url: logs_path do |f| %>
     <%= render partial: "logs/form", locals: { form: f } %>
+    <%= f.hidden_field(:procedure_id, value: procedure.id) %>
+    <%= f.hidden_field(:staff_id, value: current_user.id) %>
     <%= f.submit "Add observation" %>
   <% end %>
 <% end %>

@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   resources :labs, only: [:index, :show]
   resources :experiments
   resources :procedures, except: [:index]
-  resources :logs, only: [:create, :edit, :delete]
+  resources :logs, only: [:create, :edit, :update, :destroy]
 end
