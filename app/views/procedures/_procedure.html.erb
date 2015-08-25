@@ -6,7 +6,7 @@ Instructions:
 <% end %>
 <h4>Log entries for this procedure:</h4>
 <%= render procedure.logs %>
-<% if !current_user.faculty? %>
+<% if !current_user.faculty? && procedure.experiment.staffs.include?(current_user) %>
   <h4>Add log entry:</h4>
   <%= form_for :log, url: logs_path do |f| %>
     <%= render partial: "logs/form", locals: { form: f } %>

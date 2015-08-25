@@ -7,8 +7,11 @@ class User < ActiveRecord::Base
 
   after_initialize :set_defaults
 
-  has_many :experiments
+  has_many :experiments, foreign_key: :owner_id
   has_many :logs
+
+  has_many :assignments
+  has_many :assigned_experiments, through: :assignments, source: :staff
 
   def set_defaults
     self.position ||= "staff"
