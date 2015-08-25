@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   resources :experiments
-  resources :procedures, except: [:show]
+  resources :procedures, except: [:show, :index]
 end
