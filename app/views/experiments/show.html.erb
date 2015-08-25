@@ -3,7 +3,7 @@
 <p><%= @experiment.description %></p>
 <h4>Hypothesis:</h4>
 <p><%= @experiment.hypothesis %></p>
-<% if @experiment.ended? %>
+<% if @experiment.completed? %>
   <h4>Conclusion:</h4>
   <p><%= @experiment.conclusion %></p>
 <% end %>
@@ -17,4 +17,4 @@
 <p><%= @experiment.lab.name %></p>
 <h4>Procedures:</h4>
 <%= render @experiment.procedures %>
-<%= link_to "Add procedure", new_procedure_path(@experiment) %>
+<%= link_to "Add procedure", new_procedure_path(@experiment, experiment_id: @experiment.id) %>

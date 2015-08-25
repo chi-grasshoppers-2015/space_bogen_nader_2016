@@ -5,6 +5,7 @@ class ProceduresController < ApplicationController
 
   def new
     @procedure = Procedure.new
+    @experiment = Experiment.find(params[:experiment_id])
   end
 
   def create
@@ -16,6 +17,10 @@ class ProceduresController < ApplicationController
     end
   end
 
+  def edit
+    @procedure = Procedure.find(params[:id])
+  end
+
   def update
     @procedure = find_procedure
     @procedure.update(procedure_params)
@@ -23,7 +28,10 @@ class ProceduresController < ApplicationController
   end
 
   def destroy
-    Procedure.destroy(params[:id])
+    @procedure = Procedure.find(params[:id])
+    @experiment = @procedure.experiment
+    @procedure.destroy
+    redirect_to @experiment
   end
 
   private
