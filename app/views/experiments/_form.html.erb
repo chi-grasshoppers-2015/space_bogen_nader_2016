@@ -1,12 +1,26 @@
-<%= form.label :title %>
-<%= form.text_field :title %>
-<%= form.label :hypothesis %>
-<%= form.text_field :hypothesis %>
-<%= form.label :description %>
-<%= form.text_area_tag :description, size: "30x5" %>
-<%= form.label :start_date %>
-<%= form.date_field :start_date %>
-<%= form.label :end_date %>
-<%= form.date_field :end_date %>
-<%= form.label :lab %>
-<%= form.collection_select :lab_id, Lab.all, :id, :name %>
+<table>
+  <tr>
+    <td><%= form.label :title %></td>
+    <td><%= form.text_field :title %>
+  </tr>
+  <tr>
+    <td><%= form.label :hypothesis %></td>
+    <td><%= form.text_field :hypothesis %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :description %></td>
+    <td><%= form.text_area :description, size: "30x5" %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :start_date %></td>
+    <td><%= form.date_field :start_date %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :end_date %></td>
+    <td><%= form.date_field :end_date %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :lab %></td>
+    <td><%= form.collection_select :lab_id, Lab.all, :id, :name %></td>
+  </tr>
+</table>

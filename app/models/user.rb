@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
     @user if @user && @user.password == password
   end
 
+  def faculty?
+    self.position == "faculty"
+  end
+
 end

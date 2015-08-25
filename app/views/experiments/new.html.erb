@@ -1,5 +1,6 @@
 <h3>New Experiment</h3>
 <%= form_for @experiment do |f| %>
-  <%= render partial: :form, locals: {form: f}  %>
-  <%= f.submit "Save Experiment" %>
+  <%= render partial: "form", locals: {form: f}  %>
+  <%= f.hidden_field(:experiment, current_user.id) %>
+  <%= f.submit "Add Experiment" %>
 <% end %>
