@@ -1,7 +1,7 @@
 class Log < ActiveRecord::Base
-	belongs_to :logger, class_name: "User"
+	belongs_to :staff, class_name: "User"
 	belongs_to :procedure
-	validates_presence_of :observation, :procedure_id, :logger_id
+	validates_presence_of :observation, :procedure_id, :staff_id
 
 	def procedure_instructions
 		self.procedure.instructions
