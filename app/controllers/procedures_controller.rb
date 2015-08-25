@@ -1,4 +1,4 @@
-class ProceduresController < ApplicationController
+class ProceduresController < ResourcesController
   def show
     @procedure = find_procedure
   end

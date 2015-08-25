@@ -1,4 +1,4 @@
-class ExperimentsController < ApplicationController
+class ExperimentsController < ResourcesController
   include UsersHelper
 
   def index
