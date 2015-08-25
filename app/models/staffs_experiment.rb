@@ -1,4 +1,4 @@
-class Assignment < ActiveRecord::Base
+class StaffsExperiment < ActiveRecord::Base
 
   validates_presence_of :experiment_id, :staff_id
 
