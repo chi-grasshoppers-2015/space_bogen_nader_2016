@@ -23,4 +23,8 @@
     <td><%= form.label :lab %></td>
     <td><%= form.collection_select :lab_id, Lab.all, :id, :name %></td>
   </tr>
+  <tr>
+    <td><%= form.label :allotted_time %></td>
+    <td><%= form.number_field :allotted_time, :step => 0.5 %></td>
+  </tr>
 </table>
