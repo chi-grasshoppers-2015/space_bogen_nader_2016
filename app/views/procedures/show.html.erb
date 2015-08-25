@@ -1,6 +1,14 @@
 <h3>Procedure for experiment <%= @procedure.experiment.title %></h3>
 Instructions:
 <p><%= @procedure.instructions %></p>
-<%= link_to "Edit procedure", edit_procedure_path(@procedure) %>
-<%= link_to "Delete procedure", @procedure, method: delete %>
+<% if current_user.faculty? %>
+  <%= link_to "Edit procedure", edit_procedure_path(@procedure) %>
+  <%= link_to "Delete procedure", @procedure, method: delete %>
+<% else %>
+  <h4>Add log entry for this procedure:</h4>
+  <%= form_for :log do |f| %>
+    <%= render partial: "logs/form", locals: { form: f } %>
+    <%= f.submit "Add observation" %>
+  <% end %>
+<% end %>
 <%= link_to "Back to experiment", @procedure.experiment %>
