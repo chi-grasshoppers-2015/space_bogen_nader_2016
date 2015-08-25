@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(params[:user])
-    if User.authenticate(@user.email, @user.password)
+    @user = User.find_by(user_params[:email])
+    if @user && User.authenticate(@user.email, @user.password)
       session[:user_id] = @user.id
       redirect_to @user
     else
@@ -18,5 +18,11 @@ class SessionsController < ApplicationController
     session.clear
     redirect_to :root
   end
+
+  private
+
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :position)
+    end
 
 end
