@@ -8,7 +8,7 @@ Instructions:
 <%= render procedure.logs %>
 <% if !current_user.faculty? && @experiment.staffs.include?(current_user) %>
   <h4>Add log entry:</h4>
-  <%= form_for :log, url: logs_path do |f| %>
+  <%= form_for :log, url: experiment_procedure_logs_path(@experiment, procedure) do |f| %>
     <%= render partial: "logs/form", locals: { form: f } %>
     <%= f.hidden_field(:staff_id, value: current_user.id) %>
     <%= f.submit "Add observation" %>

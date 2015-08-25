@@ -33,9 +33,9 @@ class ExperimentsController < ResourcesController
     redirect_to experiments_path
   end
 
-  def assign
+  def star
     @experiment = find_experiment
-    @experiment.staffs << current_user
+    @experiment.staffs_experiments.create!(staff_id: current_user.id, starred: true, assigned: false)
     redirect_to @experiment
   end
 
