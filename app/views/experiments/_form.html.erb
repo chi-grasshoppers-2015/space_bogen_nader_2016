@@ -1,10 +1,12 @@
-<%= form.label :status %>
-<%= form.text_field :status %>
 <%= form.label :title %>
 <%= form.text_field :title %>
 <%= form.label :hypothesis %>
 <%= form.text_field :hypothesis %>
 <%= form.label :description %>
 <%= form.text_area_tag :description, size: "30x5" %>
-<%= form.label :conclusion %>
-<%= form.text_field :conclusion %>
+<%= form.label :start_date %>
+<%= form.date_field :start_date %>
+<%= form.label :end_date %>
+<%= form.date_field :end_date %>
+<%= form.label :lab %>
+<%= form.collection_select :lab_id, Lab.all, :id, :name %>
