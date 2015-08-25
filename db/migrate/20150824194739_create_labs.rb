@@ -3,6 +3,7 @@ class CreateLabs < ActiveRecord::Migration
     create_table :labs do |t|
       t.string :location, null: false
       t.string :name, null: false
+      t.decimal :allotted_time, null: false
 
       t.timestamps null: false
     end

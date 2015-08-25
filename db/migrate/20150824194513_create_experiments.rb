@@ -9,6 +9,8 @@ class CreateExperiments < ActiveRecord::Migration
       t.date :end_date, null: false
       t.integer :owner_id, null: false
       t.integer :lab_id, null: false
+      t.decimal :allotted_time, null: false
+      t.string :status, null: false, default: "proposed"
 
       t.timestamps null: false
     end
