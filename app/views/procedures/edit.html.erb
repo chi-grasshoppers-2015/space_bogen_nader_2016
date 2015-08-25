@@ -1,0 +1,5 @@
+<h3>Editing procedure for experiment <%= @experiment.title %></h3>
+<%= form_for @procedure do |f| %>
+  <%= render partial: :form, locals: { form: f } %>
+  <%= f.submit "Save procedure" %>
+<% end %>
