@@ -1,4 +1,6 @@
 class ExperimentsController < ApplicationController
+  include UsersHelper
+
   def index
     @experiments = Experiment.all
   end
@@ -29,6 +31,12 @@ class ExperimentsController < ApplicationController
   def delete
     Experiment.destroy(params[:id])
     redirect_to experiments_path
+  end
+
+  def assign
+    @experiment = find_experiment
+    @experiment.staffs << current_user
+    redirect_to @experiment
   end
 
   private

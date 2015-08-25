@@ -17,4 +17,8 @@
 <p><%= @experiment.lab.name %></p>
 <h4>Procedures:</h4>
 <%= render @experiment.procedures %>
-<%= link_to "Add procedure", new_procedure_path(@experiment, experiment_id: @experiment.id) %>
+<% if current_user.faculty? %>
+  <%= link_to "Add procedure", new_procedure_path(@experiment, experiment_id: @experiment.id) %>
+<% elsif !@experiment.staffs.include?(current_user) %>
+  <%= link_to "Sign up for this experiment", assign_path(@experiment), method: :post %>
+<% end %>

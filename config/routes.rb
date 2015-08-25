@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :experiments
   resources :procedures, except: [:index]
   resources :logs, only: [:create, :edit, :update, :destroy]
+
+  post 'experiments/:id/signup' => 'experiments#assign', as: 'assign'
 end
