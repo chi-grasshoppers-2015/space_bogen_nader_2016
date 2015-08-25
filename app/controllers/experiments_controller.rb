@@ -46,7 +46,7 @@ class ExperimentsController < ResourcesController
     end
 
     def experiment_params
-      params.require(:experiment).permit(:status, :title, :hypothesis, :description, :conclusion, :start_date, :end_date, :owner_id, :lab_id)
+      params.require(:experiment).permit(:status, :title, :hypothesis, :description, :conclusion, :start_date, :end_date, :owner_id, :lab_id, :allotted_time)
     end
 
 end
