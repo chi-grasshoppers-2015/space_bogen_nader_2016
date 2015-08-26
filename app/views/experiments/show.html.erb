@@ -28,3 +28,19 @@
 <% elsif @experiment.starred_staff.include?(current_user)%>
   <p>You have starred this experiment!</p>
 <% end %>
+
+<% if current_user.id == @experiment.owner_id %>
+  <h4>Assign Staff:</h4>
+    <%= form_for @experiment, url: assign_path, method: "post" do |form| %>
+      <%= form.collection_select :staffs, User.not_assigned_to_experiment(@experiment), :id, :name  %>
+      <%= form.submit "Add staff member" %>
+    <% end %>
+  <h4>Assigned Staff:</h4>
+  <ul>
+    <% @experiment.staffs_experiments.where(assigned: true).each do |staff| %>
+      <li>
+        <%= User.find(staff.staff_id).name %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
