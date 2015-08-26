@@ -10,9 +10,6 @@ class User < ActiveRecord::Base
   has_many :experiments, foreign_key: :owner_id
   has_many :logs
 
-  has_many :staffs_experiments
-  has_many :assigned_experiments, through: :staffs_experiments, source: :staff
-
   def set_defaults
     self.position ||= "staff"
   end
@@ -41,6 +38,11 @@ class User < ActiveRecord::Base
     assigned_staff = assigned_se.map{|s| self.find(s.staff_id)}
     starred_staff = starred_se.map{|s| self.find(s.staff_id)}
     self.where(position: "staff") - assigned_staff - starred_staff
+  end
+
+  def staff_experiments
+    staff_assignments = StaffsExperiment.where(staff_id: self.id, assigned: true)
+    staff_assignments.map {|se| Experiment.find(se.experiment_id)}
   end
 
 end
