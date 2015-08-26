@@ -1,6 +1,8 @@
 class ExperimentsController < ResourcesController
   include UsersHelper
 
+  before_filter :require_faculty, :except => [:show, :index]
+
   def index
     @experiments = Experiment.all
   end
@@ -47,6 +49,10 @@ class ExperimentsController < ResourcesController
 
     def experiment_params
       params.require(:experiment).permit(:status, :title, :hypothesis, :description, :conclusion, :start_date, :end_date, :owner_id, :lab_id, :allotted_time)
+    end
+
+    def require_faculty
+      redirect_to experiments_path unless is_faculty?
     end
 
 end
