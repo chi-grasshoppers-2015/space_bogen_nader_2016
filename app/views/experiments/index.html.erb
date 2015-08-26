@@ -5,6 +5,7 @@
       <%= link_to(e) do %>
         <h4><%= e.title %></h4>
       <% end %>
+      <p>Status: <%= e.status %></p>
       <p>Hypothesis: <%= e.hypothesis %></p>
       <p>Description: <%= e.description %></p>
       <% if !current_user.faculty? && !e.starred_staff.include?(current_user) %>
