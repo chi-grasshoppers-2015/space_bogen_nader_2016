@@ -22,7 +22,7 @@
 <h4>Procedures:</h4>
 <%= render @experiment.procedures %>
 <% if current_user.faculty? && current_user.experiments.include?(@experiment) %>
-  <p><%= link_to "Add procedure", new_experiment_procedure_path(@experiment) %></p>
+  <p><%= link_to "Edit Experiment", edit_experiment_path(@experiment) %> | <%= link_to "Add procedure", new_experiment_procedure_path(@experiment) %></p>
 <% elsif !current_user.faculty? && !@experiment.staffs.include?(current_user) %>
   <%= link_to "Star this experiment", star_path(@experiment), method: :post %>
 <% end %>
