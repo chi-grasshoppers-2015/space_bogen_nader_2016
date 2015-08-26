@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :email, :hashed_password, :position
   validates :email, uniqueness: true
-  validates_format_of :email, :with => /\A([^@\s]+)(@gmail.com)\Z/i
-  validate :type_of_user
+  validates_format_of :email, :with => /\A([^@\s]+)(@dbc.edu)\Z/i
+  validates_inclusion_of :position, in: %w( staff faculty )
 
   after_initialize :set_defaults
 
@@ -15,12 +15,6 @@ class User < ActiveRecord::Base
 
   def set_defaults
     self.position ||= "staff"
-  end
-
-  def type_of_user
-    if self.position != "staff" && self.position != "faculty"
-      errors.add(:user_type, "must be staff or faculty")
-    end
   end
 
   def password
