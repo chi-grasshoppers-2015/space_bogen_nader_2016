@@ -1,8 +1,28 @@
-<h3>Your User Details:</h3>
+<h3>User Details:</h3>
 <p>Name: <%= @user.name %></p>
 <p>Email: <%= @user.email %></p>
 <p>Position: <%= @user.position %></p>
-<h3>Your Experiments:</h3>
-<%= render @user.experiments %>
+<h3>User Experiments:</h3>
+<% if @user.faculty? %>
+  <ul>
+    <% @user.experiments.each do |e| %>
+      <li>
+        <%= link_to(e) do %>
+          <p><%= e.title %></p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <ul>
+    <% @user.staff_experiments.each do |e| %>
+      <li>
+        <%= link_to(e) do %>
+          <p><%= e.title %></p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <p><%= image_tag 'young-scientist-2.jpg' %></p>
