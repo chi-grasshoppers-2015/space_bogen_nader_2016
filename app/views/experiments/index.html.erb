@@ -1,6 +1,6 @@
 <h1>All Experiments</h1>
 <ul>
-  <% Experiment.all.each do |e| %>
+  <% Experiment.where(status: "proposed").each do |e| %>
     <li>
       <%= link_to(e) do %>
         <h4><%= e.title %></h4>
