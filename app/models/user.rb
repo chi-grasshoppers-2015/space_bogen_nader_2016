@@ -35,4 +35,10 @@ class User < ActiveRecord::Base
     self.position == "faculty"
   end
 
+  def self.not_assigned_to_experiment(experiment)
+    assigned_se = StaffsExperiment.where(assigned: true, experiment_id: experiment.id)
+    assigned_staff = assigned_se.map{|s| self.find(s.staff_id)}
+    self.where(position: "staff") - assigned_staff
+  end
+
 end

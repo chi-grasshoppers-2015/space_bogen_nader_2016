@@ -32,7 +32,7 @@
 <% if current_user.id == @experiment.owner_id %>
   <h4>Assign Staff:</h4>
     <%= form_for @experiment, url: assign_path, method: "post" do |form| %>
-      <%= form.collection_select :staffs, User.where(position: "staff"), :id, :name  %>
+      <%= form.collection_select :staffs, User.not_assigned_to_experiment(@experiment), :id, :name  %>
       <%= form.submit "Add staff member" %>
     <% end %>
   <h4>Assigned Staff:</h4>
