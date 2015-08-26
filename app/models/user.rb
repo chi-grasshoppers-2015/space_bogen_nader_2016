@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :experiments, foreign_key: :owner_id
   has_many :logs
 
+  has_many :staffs_experiments
+
   def set_defaults
     self.position ||= "staff"
   end
