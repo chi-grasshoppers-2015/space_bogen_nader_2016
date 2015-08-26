@@ -1,5 +1,10 @@
-<p><%= log.observation %></p>
-<% if !current_user.faculty? && log.procedure.experiment.staffs.include?(current_user) %>
-  <%= link_to "Edit observation log", edit_experiment_procedure_log_path(@experiment, log.procedure, log) %> |
-  <%= link_to "Delete observation log", experiment_procedure_log_path(@experiment, log.procedure, log), :method => :delete %>
-<% end %>
+<section class="observation-box">
+  <p>
+    Performed at <%= log.time_performed %> - <%= log.time_spent %> hours
+  </p>
+  <p>Observations: <%= log.observation %></p>
+  <% if !current_user.faculty? && log.procedure.experiment.assigned_staff.include?(current_user) %>
+    <%= link_to "Edit observation log", edit_experiment_procedure_log_path(@experiment, log.procedure, log) %> |
+    <%= link_to "Delete observation log", experiment_procedure_log_path(@experiment, log.procedure, log), :method => :delete %>
+  <% end %>
+</section>

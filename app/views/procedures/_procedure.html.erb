@@ -1,16 +1,18 @@
-Instructions:
-<p><%= procedure.instructions %></p>
-<% if current_user.faculty? && current_user.experiments.include?(@experiment) %>
-  <%= link_to "Edit procedure", edit_experiment_procedure_path(@experiment, procedure) %> |
-  <%= link_to "Delete procedure", experiment_procedure_path(@experiment, procedure), method: :delete %>
-<% end %>
-<h4>Log entries for this procedure:</h4>
-<%= render procedure.logs %>
-<% if !current_user.faculty? && @experiment.assigned_staff.include?(current_user) %>
-  <h4>Add log entry:</h4>
-  <%= form_for :log, url: experiment_procedure_logs_path(@experiment, procedure) do |f| %>
-    <%= render partial: "logs/form", locals: { form: f } %>
-    <%= f.hidden_field(:staff_id, value: current_user.id) %>
-    <%= f.submit "Add observation" %>
+<section class="procedure-box">
+  Instructions:
+  <p><%= procedure.instructions %></p>
+  <% if current_user.faculty? && current_user.experiments.include?(@experiment) %>
+    <%= link_to "Edit procedure", edit_experiment_procedure_path(@experiment, procedure) %> |
+    <%= link_to "Delete procedure", experiment_procedure_path(@experiment, procedure), method: :delete %>
   <% end %>
-<% end %>
+  <h4>Log entries for this procedure:</h4>
+  <%= render procedure.logs %>
+  <% if !current_user.faculty? && @experiment.assigned_staff.include?(current_user) %>
+    <h4>Add log entry:</h4>
+    <%= form_for :log, url: experiment_procedure_logs_path(@experiment, procedure) do |f| %>
+      <%= render partial: "logs/form", locals: { form: f } %>
+      <%= f.hidden_field(:staff_id, value: current_user.id) %>
+      <%= f.submit "Add observation" %>
+    <% end %>
+  <% end %>
+</section>
