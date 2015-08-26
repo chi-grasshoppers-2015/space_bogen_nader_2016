@@ -9,6 +9,7 @@ class ExperimentsController < ResourcesController
 
   def show
     @experiment = find_experiment
+    @staffs_experiments = @experiment.staffs_experiments
   end
 
   def new
@@ -17,6 +18,7 @@ class ExperimentsController < ResourcesController
 
   def create
     @experiment = Experiment.create(experiment_params)
+
     if @experiment.valid?
       redirect_to @experiment
     else
@@ -47,8 +49,13 @@ class ExperimentsController < ResourcesController
   def star
     @experiment = find_experiment
     @experiment.staffs_experiments.create!(staff_id: current_user.id, starred: true, assigned: false)
-    p "!" * 100
-    p @errors
+    redirect_to @experiment
+  end
+
+  def assign
+    @experiment = find_experiment
+    @assignment = @experiment.staffs_experiments.find_or_create_by!(staff_id: experiment_params[:staffs])
+    @assignment.update_attributes(assigned: true)
     redirect_to @experiment
   end
 
@@ -59,7 +66,7 @@ class ExperimentsController < ResourcesController
     end
 
     def experiment_params
-      params.require(:experiment).permit(:status, :title, :hypothesis, :description, :conclusion, :start_date, :end_date, :owner_id, :lab_id, :allotted_time)
+      params.require(:experiment).permit(:status, :title, :hypothesis, :description, :conclusion, :start_date, :end_date, :owner_id, :lab_id, :allotted_time, :staffs)
     end
 
     def require_faculty

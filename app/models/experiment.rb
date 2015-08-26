@@ -41,21 +41,14 @@ class Experiment < ActiveRecord::Base
     self.staffs_experiments.select{|s| s.starred}.map(&:staff)
   end
 
-  def proposal?
-    Date.today < self.start_date || !self.staffed?
-  end
-
-  def in_progress?
-    !self.completed? && !self.proposal?
-  end
-
   def completed?
-    Date.today > self.end_date
+    self.status == "complete"
   end
 
   def staffed?
     self.staffs.length > 0
   end
+
 
 
 end
