@@ -5,4 +5,11 @@
 
 h1, h2, h3, h4, h5 {
   font-family: Papyrus,fantasy;
+  font-size: 150%;
+}
+
+.observation-box {
+  border: 1px solid gray;
+  padding: 0 10px;
+  display: inline-block;
 }
