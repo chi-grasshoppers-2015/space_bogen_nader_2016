@@ -29,7 +29,12 @@ class ExperimentsController < ResourcesController
   def update
     @experiment = find_experiment
     @experiment.update(experiment_params)
-    redirect_to @experiment
+    if !@experiment.valid?
+      flash[:error] = @experiment.errors.full_messages.first
+      render :edit
+    else
+      redirect_to @experiment
+    end
   end
 
   def delete

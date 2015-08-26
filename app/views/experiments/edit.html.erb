@@ -1,9 +1,6 @@
 <h3>Edit Experiment</h3>
+<%= flash[:error] %>
 <%= form_for @experiment do |f| %>
   <%= render partial: "form", locals: {form: f}  %>
-  <% if @experiment.completed? %>
-    <%= f.label :conclusion %>
-    <%= f.text_field :conclusion %>
-  <% end %>
   <%= f.submit "Save Experiment" %>
 <% end %>
