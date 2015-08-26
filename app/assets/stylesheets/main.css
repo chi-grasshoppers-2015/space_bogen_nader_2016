@@ -6,6 +6,34 @@
 h1, h2, h3, h4, h5 {
   font-family: Papyrus,fantasy;
   font-size: 150%;
+  animation-duration: 600ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+    color: black;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+    color: #39FF14;
+  }
+  60% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+    color: cyan;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .observation-box {
