@@ -52,7 +52,7 @@ class ExperimentsController < ResourcesController
     end
 
     def require_faculty
-      redirect_to experiments_path unless is_faculty?
+      redirect_to experiments_path unless current_user.faculty?
     end
 
 end

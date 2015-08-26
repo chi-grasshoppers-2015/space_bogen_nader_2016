@@ -1,7 +1,7 @@
 
 <h2><%= @lab.name %></h2>
 <p><%= @lab.location %></p>
-<% if is_faculty? %>
+<% if current_user.faculty? %>
   <p>Alotted time: <%= @lab.allotted_time %> hours</p>
   <p>Available time: <%= @lab.remaining_time %> hours</p>
 <% end %>
