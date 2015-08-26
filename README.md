@@ -1,4 +1,4 @@
-#Team name: Space Kincaiders
+#Team name: University Contractors
 
 ###Team members: Matt Bogen, Nick Kincaid, Ken Liu, Connor Ring
 
