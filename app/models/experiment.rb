@@ -6,7 +6,24 @@ class Experiment < ActiveRecord::Base
   has_many :staffs_experiments
   has_many :staffs, through: :staffs_experiments
   validates_presence_of :title, :hypothesis, :description, :owner_id, :lab_id, :start_date, :end_date, :allotted_time
-  validates :status, inclusion: { in: Experiment.valid_statuses }
+  validate :status_must_be_valid
+  validate :conclusion_must_be_present_if_status_is_complete
+
+  def self.valid_statuses
+    ["proposed", "active", "complete"]
+  end
+
+  def status_must_be_valid
+    if self.status && !Experiment.valid_statuses.include?(self.status)
+      errors.add(:status, "must be one of the following: " + Experiment.valid_statuses.join(" , "))
+    end
+  end
+
+  def conclusion_must_be_present_if_status_is_complete
+    if self.status == "complete" && self.conclusion.blank?
+      errors.add(:conclusion, "can't be blank if status is complete")
+    end
+  end
 
   def hours_left
     self.allotted_time - self.hours_spent
@@ -40,8 +57,5 @@ class Experiment < ActiveRecord::Base
     self.staffs.length > 0
   end
 
-  def self.valid_statuses
-    ["proposed", "active", "complete"]
-  end
 
 end
