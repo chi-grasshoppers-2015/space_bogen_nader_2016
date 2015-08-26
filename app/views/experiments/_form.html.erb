@@ -27,4 +27,12 @@
     <td><%= form.label :allotted_time %></td>
     <td><%= form.number_field :allotted_time, :step => 0.5 %></td>
   </tr>
+  <tr>
+    <td><%= form.label :conclusion %></td>
+    <td><%= form.text_area :conclusion, size: "30x5" %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :status %></td>
+    <td><%= form.select :status, Experiment.valid_statuses %></td>
+  </tr>
 </table>
