@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/chi-grasshoppers-2015/space_bogen_nader_2016.svg)](https://travis-ci.org/chi-grasshoppers-2015/space_bogen_nader_2016)
 #Team name: University Contractors
 
 ###Team members: Matt Bogen, Nick Kincaid, Ken Liu, Connor Ring
