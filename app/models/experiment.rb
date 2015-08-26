@@ -6,6 +6,7 @@ class Experiment < ActiveRecord::Base
   has_many :staffs_experiments
   has_many :staffs, through: :staffs_experiments
   validates_presence_of :title, :hypothesis, :description, :owner_id, :lab_id, :start_date, :end_date, :allotted_time
+  validates :status, inclusion: { in: Experiment.valid_statuses }
 
   def hours_left
     self.allotted_time - self.hours_spent
@@ -37,6 +38,10 @@ class Experiment < ActiveRecord::Base
 
   def staffed?
     self.staffs.length > 0
+  end
+
+  def self.valid_statuses
+    ["proposed", "active", "complete"]
   end
 
 end
