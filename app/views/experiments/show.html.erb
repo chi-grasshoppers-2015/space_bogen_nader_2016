@@ -33,7 +33,7 @@
   <h4>Assign Staff:</h4>
     <p>Staff who have starred this experiment</p>
     <%= form_for @experiment, url: assign_path, method: "post" do |form| %>
-      <%= form.collection_select :staffs, @experiment.starred_staff, :id, :name  %>
+      <%= form.collection_select :staffs, @experiment.starred_staff - @experiment.assigned_staff, :id, :name  %>
       <%= form.submit "Add staff member" %>
     <% end %>
     <p>Staff</p>
