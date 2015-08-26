@@ -1,7 +1,7 @@
 class ExperimentsController < ResourcesController
   include UsersHelper
 
-  before_filter :require_faculty, :except => [:show, :index]
+  before_filter :require_faculty, :except => [:show, :index, :star]
 
   def index
     @experiments = Experiment.all
@@ -47,6 +47,8 @@ class ExperimentsController < ResourcesController
   def star
     @experiment = find_experiment
     @experiment.staffs_experiments.create!(staff_id: current_user.id, starred: true, assigned: false)
+    p "!" * 100
+    p @errors
     redirect_to @experiment
   end
 
