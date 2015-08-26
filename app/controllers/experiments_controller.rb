@@ -22,6 +22,10 @@ class ExperimentsController < ResourcesController
     end
   end
 
+  def edit
+    @experiment = find_experiment
+  end
+
   def update
     @experiment = find_experiment
     @experiment.update(experiment_params)

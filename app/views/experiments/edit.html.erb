@@ -1,7 +1,7 @@
 <h3>Edit Experiment</h3>
 <%= form_for @experiment do |f| %>
-  <%= render partial: :form, locals: {form: f}  %>
-  <% if @experiment.ended? %>
+  <%= render partial: "form", locals: {form: f}  %>
+  <% if @experiment.completed? %>
     <%= f.label :conclusion %>
     <%= f.text_field :conclusion %>
   <% end %>
